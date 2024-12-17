@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include <QPair>
+#include <vector>
 
 class Board {
 public:
@@ -20,7 +21,7 @@ public:
 
 private:
     int SIZE;  // Size of the board
-    int** grid;  // 2D array to store the board state
+    std::vector<std::vector<int>> grid;  // 2D array to store the board state
 };
 
 #endif // BOARD_H

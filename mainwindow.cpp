@@ -61,12 +61,15 @@ void Visualization::keyPressEvent(QKeyEvent* event) {
 }
 
 void Visualization::drawBoard(QPainter& painter) {
-    int boardSize = game->getBoardSize();
-    for (int i = 0; i < boardSize; i++) {
-        for (int j = 0; j < boardSize; j++) {
-            int tileValue = game->getBoard()->getTile(i, j, boardSize);  // Get the tile value from the game logic
-            // std::cout << tileValue;
-            drawTile(i, j, tileValue, painter);  // Draw the tile using the painter
+    if (game)
+    {
+        int boardSize = game->getBoardSize();
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                int tileValue = game->getBoard()->getTile(i, j, boardSize);  // Get the tile value from the game logic
+                // std::cout << tileValue;
+                drawTile(i, j, tileValue, painter);  // Draw the tile using the painter
+            }
         }
     }
 }

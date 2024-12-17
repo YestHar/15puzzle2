@@ -5,21 +5,19 @@
 #include <random>
 #include <cstdlib>
 #include <iostream>
-
-Board::Board(int size) : SIZE(size), grid(nullptr) {
-    grid = new int*[SIZE];
+Board::Board(int size) : SIZE(size) {//change to dynamic
     for (int i = 0; i < SIZE; i++) {
-        grid[i] = new int[SIZE];
+        std::vector<int> a;
+        grid.push_back(a);
+        for (int j = 0; j < SIZE; j++)
+        {
+            grid[i].push_back(0);
+        }
     }
     initialize();
 }
 
 Board::~Board() {
-    // Free dynamically allocated memory
-    for (int i = 0; i < SIZE; i++) {
-        delete[] grid[i];
-    }
-    delete[] grid;
 }
 
 void Board::initialize() {
@@ -57,7 +55,7 @@ bool Board::isBoardSolved() const {
 }
 
 int Board::getTile(int row, int col, int size) const {
-    if (row >= 0 && row < SIZE && col >= 0 && col < SIZE) {
+    if (row >= 0 && row < size && col >= 0 && col < size) {
         return grid[row][col];
     }
     return -1;  // Invalid index
@@ -101,17 +99,12 @@ int Board::getSize() const {
 
 void Board::setSize(int size) {
     // Deallocate existing grid memory
-    for (int i = 0; i < SIZE; i++) {
-        delete[] grid[i];
-    }
-    delete[] grid;
-
     // Set new size and allocate new grid
-    SIZE = size;
-    grid = new int*[SIZE];
-    for (int i = 0; i < SIZE; i++) {
-        grid[i] = new int[SIZE];
-    }
+    /*SIZE = size;*/
+    /*grid = new int*[SIZE];*/
+    /*for (int i = 0; i < SIZE; i++) {*/
+    /*    grid[i] = new int[SIZE];*/
+    /*}*/
 
     initialize();  // Reinitialize the grid with shuffled numbers
 }

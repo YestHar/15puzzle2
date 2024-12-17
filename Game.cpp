@@ -1,10 +1,12 @@
 #include "Game.h"
 
 Game::Game(int size, QObject* parent)
-    : QObject(parent),
-    logic(new Logic(size)),
-    visualization(new Visualization(this)) {
+    : QObject(parent)
+    {
     // Connect the signals from Visualization to Game slots
+    board = new Board(size);
+    logic = new Logic(board);
+    visualization = new Visualization(this);
     connect(visualization, &Visualization::tileClicked, this, &Game::onTileClicked);
     connect(visualization, &Visualization::keyPressed, this, &Game::onKeyPressed);
 }

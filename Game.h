@@ -28,8 +28,8 @@ public:
 
 private:
     Board* board;  // Pointer to the game board
-    Logic* logic;  // Game logic
-    Visualization* visualization;  // UI for visualizing the game
+    Logic* logic = nullptr;  // Game logic
+    Visualization* visualization = nullptr;  // UI for visualizing the game
 
 private slots:
     // Slot to handle tile clicks

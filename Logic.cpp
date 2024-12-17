@@ -2,8 +2,7 @@
 #include <QPair>
 #include <cstdlib>  // For std::abs
 
-Logic::Logic(int size) : SIZE(size) {
-    board = new Board(SIZE);  // Create a new Board with the specified size
+Logic::Logic(Board* other_board) : board(other_board){
 }
 
 Logic::~Logic() {

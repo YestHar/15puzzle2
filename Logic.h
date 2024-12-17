@@ -5,7 +5,7 @@
 
 class Logic {
 public:
-    Logic(int size);  // Constructor to initialize the game logic
+    Logic(Board* board);  // Constructor to initialize the game logic
     ~Logic();  // Destructor to clean up
 
     void startNewGame();  // Start a new game
@@ -22,7 +22,7 @@ public:
     void moveRight();  // Move the empty space right
 
 private:
-    int SIZE;  // The size of the board (e.g., 3 for 3x3, 4 for 4x4)
+    int SIZE = 3;  // The size of the board (e.g., 3 for 3x3, 4 for 4x4)
     Board* board;  // The game board
 };
 

@@ -68,9 +68,9 @@ void Menu::setupSizeSelectionWindow() {
     layout->addWidget(size5x5);
 
     // Connect buttons to the slot for matrix size selection
-    connect(size3x3, &QPushButton::clicked, this, [this](){ onMatrixSizeSelected(3); });
-    connect(size4x4, &QPushButton::clicked, this, [this](){ onMatrixSizeSelected(4); });
-    connect(size5x5, &QPushButton::clicked, this, [this](){ onMatrixSizeSelected(5); });
+    connect(size3x3, &QPushButton::clicked, [this](){ onMatrixSizeSelected(3); });
+    connect(size4x4, &QPushButton::clicked, [this](){ onMatrixSizeSelected(4); });
+    connect(size5x5, &QPushButton::clicked, [this](){ onMatrixSizeSelected(5); });
 
     sizeSelectionWindow->setLayout(layout);
     sizeSelectionWindow->show();
