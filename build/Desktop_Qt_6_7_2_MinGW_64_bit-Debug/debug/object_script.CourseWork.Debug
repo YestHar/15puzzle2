@@ -1,0 +1,10 @@
+debug/Board.o
+debug/Game.o
+debug/Logic.o
+debug/Menu.o
+debug/Visualization.o
+debug/main.o
+debug/mainwindow.o
+debug/moc_Game.o
+debug/moc_Menu.o
+debug/moc_mainwindow.o
