@@ -11,8 +11,13 @@ CONFIG += c++17
 SOURCES += \
     Board.cpp \
     Game.cpp \
+    GameWindow.cpp \
     Logic.cpp \
+    MatrixSizeSelectionWindow.cpp \
     Menu.cpp \
+    NameInputWindow.cpp \
+    RecordsWindow.cpp \
+    ScorePanel.cpp \
     Visualization.cpp \
     main.cpp \
     mainwindow.cpp
@@ -20,8 +25,13 @@ SOURCES += \
 HEADERS += \
     Board.h \
     Game.h \
+    GameWindow.h \
     Logic.h \
+    MatrixSizeSelectionWindow.h \
     Menu.h \
+    NameInputWindow.h \
+    RecordsWindow.h \
+    ScorePanel.h \
     Visualization.h \
     mainwindow.h
 

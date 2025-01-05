@@ -5,25 +5,25 @@
 
 class Logic {
 public:
-    Logic(Board* board);  // Constructor to initialize the game logic
-    ~Logic();  // Destructor to clean up
+    Logic(Board* board);
+    ~Logic();
 
-    void startNewGame();  // Start a new game
-    bool makeMove(int row, int col);  // Make a move by swapping the tile with the zero tile
-    bool isGameSolved() const;  // Check if the game is solved
-    int getTile(int row, int col) const;  // Get the tile value at a specific position
-    void resetGame();  // Reset the game
-    int getBoardSize() const;  // Get the board size (e.g., 3x3, 4x4)
+    void startNewGame();
+    bool makeMove(int row, int col);
+    bool isGameSolved() const;
+    int getTile(int row, int col) const;
+    void resetGame();
+    int getBoardSize() const;
 
     // Movement functions to move the tiles
-    void moveUp();  // Move the empty space up
-    void moveDown();  // Move the empty space down
-    void moveLeft();  // Move the empty space left
-    void moveRight();  // Move the empty space right
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
 
 private:
-    int SIZE = 3;  // The size of the board (e.g., 3 for 3x3, 4 for 4x4)
-    Board* board;  // The game board
+    int SIZE = 4;
+    Board* board;
 };
 
 #endif // LOGIC_H

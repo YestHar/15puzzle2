@@ -1,10 +1,88 @@
+// #ifndef GAME_H
+// #define GAME_H
+
+// #include <QObject>
+// #include <QWidget>
+// #include <QPushButton>
+// #include <QLabel>
+// #include <QVBoxLayout>
+// #include <QHBoxLayout>
+// #include <QKeyEvent>
+// #include <QMouseEvent>
+// #include <QMainWindow>
+// #include "Logic.h"
+// #include "Board.h"
+// #include "mainWindow.h"
+
+// class Visualization;
+
+
+// class Game : public QMainWindow {
+//     Q_OBJECT
+
+// public:
+//     explicit Game(int size = 3, const QString& playerName = QString(), QMainWindow* parent = nullptr);
+//     ~Game();  // Destructor
+
+//     void startGame();
+//     void restartGame();
+//     bool makeMove(int row, int col);
+
+//     // Getters
+//     int getBoardSize() const;
+//     bool isGameSolved() const;
+//     Board* getBoard() const;
+
+// signals:
+//     void menuRequested();  // Signal to go back to the menu
+//     void gameFinished();
+
+// public slots:
+//     void onTileClicked(int row, int col);
+//     void onKeyPressedSlot(int key);
+
+// private slots:
+//     void onKeyPressed(int key);
+//     void onRestartClicked();
+//     void onMenuClicked();
+//     void incrementScore();
+
+// protected:
+//     void keyPressEvent(QKeyEvent* event) override;
+//     void mousePressEvent(QMouseEvent* event) override;
+
+// private:
+//     void setupUI();
+//     void updateScore();
+
+//     int gridSize;
+//     int stepsCount;
+//     QString playerName;
+//     Visualization* visualization = nullptr;
+
+//     Board* board;
+//     Logic* logic = nullptr;
+//     QWidget* centralWidget;
+//     QLabel* scoreLabel;
+//     QPushButton* restartButton;
+//     QPushButton* menuButton;
+
+//     QVBoxLayout* mainLayout;
+//     QHBoxLayout* topBarLayout;
+//     QWidget* gameBoard;
+// };
+
+// #endif // GAME_H
+
+
+
+
 #ifndef GAME_H
 #define GAME_H
 
 #include <QObject>
 #include "Logic.h"
-#include "Board.h"  // Include the full Board class here
-// #include "Visualization.h"  // Include the full Visualization class
+#include "Board.h"
 #include "mainWindow.h"
 
 class Visualization;
@@ -13,29 +91,29 @@ class Game : public QObject {
     Q_OBJECT
 
 public:
-    // Constructor with a default board size, defaults to 3x3
     Game(int size = 3, QObject* parent = nullptr);
     ~Game();  // Destructor
 
-    void startGame();  // Starts a new game
-    void restartGame();  // Restarts the current game
-    bool makeMove(int row, int col);  // Makes a move on the board
+    void startGame();
+    void restartGame();
+    bool makeMove(int row, int col);
 
     // Getters
+    int getScore();
     int getBoardSize() const;
     bool isGameSolved() const;
-    Board* getBoard() const;  // Returns a pointer to the Board
+    Board* getBoard() const;
 
 private:
-    Board* board;  // Pointer to the game board
-    Logic* logic = nullptr;  // Game logic
-    Visualization* visualization = nullptr;  // UI for visualizing the game
+    int score = 0;
+    Board* board;
+    Logic* logic = nullptr;
+    Visualization* visualization = nullptr;
 
-private slots:
-    // Slot to handle tile clicks
+public slots:
+    void onKeyPressedSlot(int key);
     void onTileClicked(int row, int col);
-
-    // Slot to handle key presses
+private slots:
     void onKeyPressed(int key);
 };
 

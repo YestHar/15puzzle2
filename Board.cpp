@@ -5,7 +5,7 @@
 #include <random>
 #include <cstdlib>
 #include <iostream>
-Board::Board(int size) : SIZE(size) {//change to dynamic
+Board::Board(int size) : SIZE(size) {
     for (int i = 0; i < SIZE; i++) {
         std::vector<int> a;
         grid.push_back(a);
@@ -26,12 +26,11 @@ void Board::initialize() {
         numbers[i] = i;
     }
 
-    // Use std::shuffle with QRandomGenerator to shuffle the numbers
-    std::random_device rd;  // Obtain a random number from the system
-    std::mt19937 gen(QRandomGenerator::global()->generate());  // Use Qt's global random generator for std::mt19937
+    std::random_device rd;
+    std::mt19937 gen(QRandomGenerator::global()->generate());
     do {
-        std::shuffle(numbers, numbers + SIZE * SIZE, gen);  // Shuffle using std::shuffle and the Qt random generator
-    } while (!isSolvable(numbers));  // Check if the board is solvable
+        std::shuffle(numbers, numbers + SIZE * SIZE, gen);
+    } while (!isSolvable(numbers));
 
     int index = 0;
     for (int i = 0; i < SIZE; i++) {
@@ -72,6 +71,9 @@ bool Board::swap(int row1, int col1, int row2, int col2) {
 
 bool Board::isSolvable(int numbers[]) const {
     int inversions = 0;
+    int emptyRow = 0; // Row of the empty tile (0-based)
+
+    // Count inversions
     for (int i = 0; i < SIZE * SIZE - 1; i++) {
         for (int j = i + 1; j < SIZE * SIZE; j++) {
             if (numbers[i] > numbers[j] && numbers[i] != 0 && numbers[j] != 0) {
@@ -79,7 +81,22 @@ bool Board::isSolvable(int numbers[]) const {
             }
         }
     }
-    return inversions % 2 == 0;
+
+    // Find the row of the empty tile (0-based indexing)
+    for (int i = 0; i < SIZE * SIZE; i++) {
+        if (numbers[i] == 0) {
+            emptyRow = i / SIZE; // Determine the row of the empty space
+            break;
+        }
+    }
+
+    if (SIZE % 2 != 0) {
+        // Odd grid size: solvable if inversions are even
+        return inversions % 2 == 0;
+    } else {
+        // Even grid size: additional check with the empty tile row
+        return (inversions % 2 == 0) == (emptyRow % 2 != 0);
+    }
 }
 
 QPair<int, int> Board::findZero() const {
@@ -90,7 +107,7 @@ QPair<int, int> Board::findZero() const {
             }
         }
     }
-    return QPair<int, int>(-1, -1);  // Return invalid index if not found
+    return QPair<int, int>(-1, -1);
 }
 
 int Board::getSize() const {
@@ -98,13 +115,5 @@ int Board::getSize() const {
 }
 
 void Board::setSize(int size) {
-    // Deallocate existing grid memory
-    // Set new size and allocate new grid
-    /*SIZE = size;*/
-    /*grid = new int*[SIZE];*/
-    /*for (int i = 0; i < SIZE; i++) {*/
-    /*    grid[i] = new int[SIZE];*/
-    /*}*/
-
-    initialize();  // Reinitialize the grid with shuffled numbers
+    initialize();
 }
